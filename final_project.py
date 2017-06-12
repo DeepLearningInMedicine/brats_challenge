@@ -127,7 +127,7 @@ def dice_coef_loss(y_true, y_pred):
     return -dice_coef(y_true, y_pred)
 
 def build_model(shape):
-    learning_rate = 1e-4
+    learning_rate = 1e-5
     dropout_rate = .2
     num_filters = [32, 64, 128, 256, 512]
 
@@ -186,7 +186,7 @@ def build_model(shape):
 
     model = Model(inputs=[inputs], outputs=[conv10])
 
-    model.compile(optimizer=Adam(lr=learning_rate), loss=dice_coef_loss, metrics=[dice_coef, dice_coef_val])
+    model.compile(optimizer=Adam(lr=learning_rate), loss=keras.losses.binary_crossentropy, metrics=[dice_coef, dice_coef_val])
 
     return model
 
@@ -199,7 +199,7 @@ def run():
     images, labels = get_samples()
     images, labels, shape = reshape_images(images, labels)
 
-    model_path = 'models/brats_model7.h5'
+    model_path = 'models/brats_model.h5'
     num_epochs = 15 
     batch_size = 1 
     num_training = 240 
