@@ -1,0 +1,7 @@
+env/
+Brats17TrainingData/
+data/
+models/
+*.swp
+*.swo
+*.pyc
